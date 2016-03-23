@@ -9,11 +9,11 @@
         <!-- add map -->
         <div>
             <!--<img src="img/lkyJ16ZTLCRaxIYJk8KM_map.png" width="100%" height="auto">-->
-            <ui-gmap-google-map center='map.center' zoom='map.zoom'></ui-gmap-google-map>
-            <p>hello</p>
+            <ui-gmap-google-map center='map.center' zoom='map.zoom'>
+              <ui-gmap-marker ng-repeat="marker in markers" coords="marker.coords" options="markersOptions" idkey="marker.id"></ui-gmap-marker>
+            </ui-gmap-google-map>
         </div>
 
-
-        <a ui-sref="addWifiLocation" id="main-button6" class="button button-positive  button-block">Add Free Wifi location</a>
+        <a ui-sref="addWifiLocation" id="main-button6" class="button button-positive button-block bottom-button">Add Free Wifi location</a>
     </ion-content>
 </ion-view>

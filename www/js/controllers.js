@@ -1,26 +1,56 @@
-angular.module('app.controllers', [])
-  
-.controller('freeFiCtrl', function($scope) {
+angular
+  .module('app.controllers', [])
 
-})
-   
-.controller('loginCtrl', function($scope) {
+  .controller('freeFiCtrl', function ($scope) {
 
-})
-   
-.controller('signupCtrl', function($scope) {
+  })
 
-})
-   
-.controller('mainCtrl', function($scope) {
-    $scope.map = { center: { latitude: 45, longitude: -73 }, zoom: 8 };
-})
-   
-.controller('addWifiLocationCtrl', function($scope) {
+  .controller('loginCtrl', function ($scope) {
 
-})
-   
-.controller('tutorialCtrl', function($scope) {
+  })
 
-})
- 
+  .controller('signupCtrl', function ($scope) {
+
+  })
+
+  .controller('mainCtrl', function ($scope) {
+    navigator.geolocation.getCurrentPosition(function (position) {
+      $scope.map = {
+        center: {
+          latitude: position.coords.latitude,
+          longitude: position.coords.longitude
+        },
+        zoom: 13
+      };
+
+      $scope.markersOptions = {
+        icon: '../img/connection.png'
+      };
+
+      $scope.markers = [
+        {
+          id: 0,
+          coords: {
+            latitude: 40.1451,
+            longitude: -99.6680
+          }
+        },
+        {
+          id: 1,
+          coords: {
+            latitude: 38.1451,
+            longitude: -23.6680
+          }
+        }
+      ];
+
+    });
+  })
+
+  .controller('addWifiLocationCtrl', function ($scope) {
+
+  })
+
+  .controller('tutorialCtrl', function ($scope) {
+
+  })
