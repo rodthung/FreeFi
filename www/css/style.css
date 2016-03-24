@@ -1,3 +1,30 @@
 .angular-google-map-container {
   height: 80vh;
 }
+
+.divDown {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translate(-50%, 0%);
+  width: 50%;
+}
+
+.roundButton {
+  border-radius: 50%;
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+}
+
+#home {
+  background-image: url('../img/homeBg.jpg');
+  text-align: center;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-color: black;
+}
+
+#home h1 {
+  color: white;
+}
