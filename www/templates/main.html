@@ -1,11 +1,11 @@
 <ion-view title="main">
-    <ion-content overflow-scroll="true" padding="true" class="has-header">
+  <ion-content overflow-scroll="true" padding="true" class="has-header">
         <!--
-        <form class="list">
-            <label class="item item-input" name="search">
-                <i class="icon ion-search placeholder-icon"></i>
-                <input type="search" placeholder="Search by location">
-            </label>
+    <form class="list">
+      <label class="item item-input" name="search">
+        <i class="icon ion-search placeholder-icon"></i>
+        <input type="search" placeholder="Search by location">
+      </label>
         </form> -->
         <div>
             <script type="text/ng-template" id="searchbox.tpl.html">
@@ -17,15 +17,18 @@
                 <div id="searchboxWrapper" class="field"></div>
             </form>
             <!-- add map -->
-
-            <ui-gmap-google-map center='map.center' zoom='map.zoom'>
+    <div>
+      <!--<img src="img/lkyJ16ZTLCRaxIYJk8KM_map.png" width="100%" height="auto">-->
+      <ui-gmap-google-map center='map.center' zoom='map.zoom'>
 
                 <ui-gmap-search-box template="searchbox.template" events="searchbox.events"></ui-gmap-search-box>
+        <ui-gmap-marker ng-repeat="marker in markers" coords="marker.coords" options="markersOptions"
+                        idkey="marker.id"></ui-gmap-marker>
 
-                <ui-gmap-marker ng-repeat="marker in markers" coords="marker.coords" options="markersOptions" idkey="marker.id"></ui-gmap-marker>
-            </ui-gmap-google-map>
-        </div>
+      </ui-gmap-google-map>
+    </div>
 
-        <a ui-sref="addWifiLocation" id="main-button6" class="button button-positive button-block bottom-button">Add Free Wifi location</a>
-    </ion-content>
+    <a ui-sref="addWifiLocation" id="main-button6"
+       class="button button-positive ink-dark icon ion-plus-round roundButtonMap"></a>
+  </ion-content>
 </ion-view>
