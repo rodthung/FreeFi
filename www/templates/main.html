@@ -1,34 +1,17 @@
 <ion-view title="main">
-  <ion-content overflow-scroll="true" padding="true" class="has-header">
-        <!--
-    <form class="list">
-      <label class="item item-input" name="search">
-        <i class="icon ion-search placeholder-icon"></i>
-        <input type="search" placeholder="Search by location">
-      </label>
-        </form> -->
+    <ion-content overflow-scroll="true" padding="true" class="has-header">
         <div>
-            <script type="text/ng-template" id="searchbox.tpl.html">
-                <label>Search Store</label>
-                <input type="text" placeholder="Search Box">
-            </script>
-            <form class="ui form">
-                <h3 class="ui header">New Test Searchbox!</h3>
-                <div id="searchboxWrapper" class="field"></div>
-            </form>
+            <ion-content>
+                <ion-google-place placeholder="Your address" ng-model="data.address" required name="address" location-changed="locationChanged" />
+            </ion-content>
+
             <!-- add map -->
-    <div>
-      <!--<img src="img/lkyJ16ZTLCRaxIYJk8KM_map.png" width="100%" height="auto">-->
-      <ui-gmap-google-map center='map.center' zoom='map.zoom'>
 
-                <ui-gmap-search-box template="searchbox.template" events="searchbox.events"></ui-gmap-search-box>
-        <ui-gmap-marker ng-repeat="marker in markers" coords="marker.coords" options="markersOptions"
-                        idkey="marker.id"></ui-gmap-marker>
+            <ui-gmap-google-map center='map.center' zoom='map.zoom'>
+                <ui-gmap-marker ng-repeat="marker in markers" coords="marker.coords" options="markersOptions" idkey="marker.id"></ui-gmap-marker>
+            </ui-gmap-google-map>
+        </div>
 
-      </ui-gmap-google-map>
-    </div>
-
-    <a ui-sref="addWifiLocation" id="main-button6"
-       class="button button-positive ink-dark icon ion-plus-round roundButtonMap"></a>
-  </ion-content>
+        <a ui-sref="addWifiLocation" id="main-button6" class="button button-positive ink-dark icon ion-plus-round roundButtonMap"></a>
+    </ion-content>
 </ion-view>

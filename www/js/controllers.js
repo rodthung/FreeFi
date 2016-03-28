@@ -16,12 +16,21 @@ angular
 .controller('mainCtrl', function ($scope) {
     navigator.geolocation.getCurrentPosition(function (position) {
 
-        var events = {
-            places_changed: function (searchBox) {}
-        }
-        $scope.searchbox = {
-            template: 'searchbox.tpl.html',
-            events: events
+        var geocoder = new google.maps.Geocoder();
+
+        $scope.locationChanged = function (location) {
+            geocoder.geocode({
+                'address': location
+            }, function (results, status) {
+
+                if (status == google.maps.GeocoderStatus.OK) {
+                    console.log(results[0].geometry.location.lat());
+                    console.log(results[0].geometry.location.lng());
+
+                }
+            });
+
+
         };
 
         $scope.map = {
@@ -54,6 +63,7 @@ angular
       ];
 
     });
+
 })
 
 .controller('addWifiLocationCtrl', function ($scope) {
