@@ -24,9 +24,6 @@ angular
         }, function (results, status) {
 
           if (status == google.maps.GeocoderStatus.OK) {
-            console.log(results[0].geometry.location.lat());
-            console.log(results[0].geometry.location.lng());
-
             $scope.map.center.latitude = results[0].geometry.location.lat();
             $scope.map.center.longitude = results[0].geometry.location.lng();
 
@@ -45,7 +42,7 @@ angular
       };
 
       $scope.markersOptions = {
-        icon: '../img/connection.png'
+        icon: '../img/freefi-point-blue.png'
       };
 
       $scope.markers = [
@@ -65,6 +62,15 @@ angular
         }
       ];
 
+      for(var i = 0; i < 2500; i++) {
+        $scope.markers.push({
+          id: i,
+          coords: {
+            latitude: (Math.random() * (99 - (-99)) + 0.0200).toFixed(4),
+            longitude: (Math.random() * (180 - (-180)) + 0.0200).toFixed(4)
+          }
+        })
+      }
     });
 
   })
@@ -95,9 +101,12 @@ angular
           latitude: position.coords.latitude,
           longitude: position.coords.longitude
         },
-        options: {draggable: true},
+        options: {
+          draggable: true,
+          icon: '../img/freefi-point-mango.png'
+        },
         events: {
-          dragend: function (marker, eventName, args) {
+          dragend: function (marker) {
             $scope.wifiPoint.lat = marker.getPosition().lat();
             $scope.wifiPoint.lon = marker.getPosition().lng();
 

@@ -1,5 +1,5 @@
 .angular-google-map-container {
-  height: 80vh;
+  height: 85vh;
   margin-top: 10px;
   z-index: 1;
 }
@@ -24,8 +24,9 @@
   border-radius: 50%;
   position: fixed;
   bottom: 15px;
-  left: 20px;
+  left: 10px;
   z-index: 100;
+  width: 60px;
 }
 
 .helpButton {
@@ -46,4 +47,8 @@
 
 #home h1 {
   color: white;
+}
+
+.scroll {
+  padding: 0 !important;
 }
