@@ -13,14 +13,13 @@
 	}
 
 .ion-place-tools-autocomplete-dropdown {
-	position: relative;
+	position: absolute;
 	top: 100%;
 	left: 0;
 	width: 100%;
 	max-height: 300px;
 	overflow-x: hidden;
 	overflow-y: auto;
-	z-index: 100 !important; 
 }
 
 .ion-place-tools-map-holder {
