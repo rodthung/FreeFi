@@ -4,14 +4,11 @@
             <div>
                 <ion-google-place placeholder="Your address" ng-model="data.address" required name="address" location-changed="locationChanged" />
             </div>
-
-            <!-- add map -->
-
             <ui-gmap-google-map center='map.center' zoom='map.zoom'>
                 <ui-gmap-marker ng-repeat="marker in markers" coords="marker.coords" options="markersOptions" idkey="marker.id"></ui-gmap-marker>
             </ui-gmap-google-map>
         </div>
 
-        <a ui-sref="addWifiLocation" id="main-button6" class="button button-positive ink-dark icon ion-plus-round roundButtonMap"></a>
+        <img src="../img/add-button.png" ui-sref="addWifiLocation" id="main-button6" class="roundButtonMap"></img>
     </ion-content>
 </ion-view>
