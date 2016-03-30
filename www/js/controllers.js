@@ -40,33 +40,18 @@ angular
         },
         zoom: 13
       };
+      $scope.markers = [];
 
       $scope.markersOptions = {
         icon: '../img/freefi-point-blue.png'
       };
 
-      $scope.markers = [
-        {
-          id: 0,
-          coords: {
-            latitude: 40.1451,
-            longitude: -99.6680
-          }
-        },
-        {
-          id: 1,
-          coords: {
-            latitude: 38.1451,
-            longitude: -23.6680
-          }
-        }
-      ];
-
-      for(var i = 0; i < 2500; i++) {
+      //Fill markers with fake data
+      for(var i = 0; i < 500; i++) {
         $scope.markers.push({
           id: i,
           coords: {
-            latitude: (Math.random() * (99 - (-99)) + 0.0200).toFixed(4),
+            latitude: (Math.random() * (120 - (-120)) + 0.0200).toFixed(4),
             longitude: (Math.random() * (180 - (-180)) + 0.0200).toFixed(4)
           }
         })
