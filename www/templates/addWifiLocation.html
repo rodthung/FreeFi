@@ -1,44 +1,31 @@
 <ion-view title="Add Wifi location">
-  <ion-content overflow-scroll="true" padding="true" class="has-header">
-    <h1>Address</h1>
+    <ion-content overflow-scroll="true" padding="true" class="has-header">
+        <h1>Address</h1>
 
-    <p>Drag and drop the marker in the wifi position</p>
+        <div>
+            <ion-google-place placeholder="Your address" ng-model="data.wifiAddress" required name="address" location-changed="addLocationChanged" />
+        </div>
+        <p>Drag and drop the marker in the wifi position</p>
+        <form class="list">
+            <ui-gmap-google-map center='map.center' zoom='map.zoom' class="addMap" events="map.events">
+                <ui-gmap-marker coords="marker.coords" options="marker.options" events="marker.events" idkey="marker.id">
+                </ui-gmap-marker>
+            </ui-gmap-google-map>
+        </form>
+        <!--<button id="addWifiLocation-button10" class="button button-positive button-small">Use Current Location</button>-->
+        <h1>Wifi</h1>
 
-    <form class="list">
-      <!--<label class="item item-input">-->
-      <!--<input type="text" placeholder="Address">-->
-      <!--</label>-->
-      <!--<label class="item item-input">-->
-      <!--<input type="text" placeholder="Street">-->
-      <!--</label>-->
-      <!--<label class="item item-input">-->
-      <!--<input type="text" placeholder="City">-->
-      <!--</label>-->
-      <!--<label class="item item-input">-->
-      <!--<input type="text" placeholder="State">-->
-      <!--</label>-->
-      <!--<label class="item item-input">-->
-      <!--<input type="text" placeholder="Zip code">-->
-      <!--</label>-->
-      <ui-gmap-google-map center='map.center' zoom='map.zoom' class="addMap" events="map.events">
-        <ui-gmap-marker coords="marker.coords" options="marker.options" events="marker.events" idkey="marker.id">
-        </ui-gmap-marker>
-      </ui-gmap-google-map>
-    </form>
-    <!--<button id="addWifiLocation-button10" class="button button-positive button-small">Use Current Location</button>-->
-    <h1>Wifi</h1>
-
-    <form class="list">
-      <label class="item item-input">
-        <input type="text" ng-model="wifiPoint.locationName" placeholder="Location Name">
-      </label>
-      <label class="item item-input">
-        <input type="text" ng-model="wifiPoint.wifiName" placeholder="WiFi Name">
-      </label>
-      <label class="item item-input">
-        <input type="text" ng-model="wifiPoint.pass" placeholder="WiFi Password">
-      </label>
-    </form>
-    <a id="addWifiLocation-button9" class="button button-positive  button-block" ng-click="saveWifiPoint()">Submit</a>
-  </ion-content>
+        <form class="list">
+            <label class="item item-input">
+                <input type="text" ng-model="wifiPoint.locationName" placeholder="Location Name">
+            </label>
+            <label class="item item-input">
+                <input type="text" ng-model="wifiPoint.wifiName" placeholder="WiFi Name">
+            </label>
+            <label class="item item-input">
+                <input type="text" ng-model="wifiPoint.pass" placeholder="WiFi Password">
+            </label>
+        </form>
+        <a id="addWifiLocation-button9" class="button button-positive  button-block" ng-click="saveWifiPoint()">Submit</a>
+    </ion-content>
 </ion-view>
