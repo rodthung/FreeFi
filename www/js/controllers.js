@@ -47,7 +47,7 @@ angular
         };
 
       //Fill markers with fake data
-      for(var i = 0; i < 500; i++) {
+      for(var i = 0; i < 20; i++) {
         $scope.markers.push({
           id: i,
                 coords: {

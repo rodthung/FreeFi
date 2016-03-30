@@ -1,5 +1,5 @@
 .angular-google-map-container {
-  height: 85vh;
+  height: 79vh;
   margin-top: 10px;
   z-index: 1;
 }
@@ -23,7 +23,7 @@
 .roundButtonMap {
   border-radius: 50%;
   position: fixed;
-  bottom: 15px;
+  bottom: 65px;
   left: 10px;
   z-index: 100;
   width: 60px;

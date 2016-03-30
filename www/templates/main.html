@@ -1,14 +1,31 @@
 <ion-view title="main">
-    <ion-content overflow-scroll="true" padding="true" class="has-header">
-        <div>
-            <div>
-                <ion-google-place placeholder="Your address" ng-model="data.address" required name="address" location-changed="locationChanged" />
-            </div>
-            <ui-gmap-google-map center='map.center' zoom='map.zoom'>
-                <ui-gmap-marker ng-repeat="marker in markers" coords="marker.coords" options="markersOptions" idkey="marker.id"></ui-gmap-marker>
-            </ui-gmap-google-map>
-        </div>
+  <ion-content overflow-scroll="true" scroll="true" padding="true" class="has-header">
+    <ion-tabs class="tabs-positive tabs-icon-top">
 
-        <img src="../img/add-button.png" ui-sref="addWifiLocation" id="main-button6" class="roundButtonMap"></img>
-    </ion-content>
+      <ion-tab title="Map" icon-on="ion-map" icon-off="ion-map">
+        <div>
+          <ion-google-place placeholder="Your address" ng-model="data.address" required name="address"
+                            location-changed="locationChanged"/>
+        </div>
+        <ui-gmap-google-map center='map.center' zoom='map.zoom'>
+          <ui-gmap-marker ng-repeat="marker in markers" coords="marker.coords" options="markersOptions"
+                          idkey="marker.id"></ui-gmap-marker>
+        </ui-gmap-google-map>
+
+        <img src="../img/add-button.png" ui-sref="addWifiLocation" id="main-button6" class="roundButtonMap"/>
+      </ion-tab>
+
+      <ion-tab title="List" icon-on="ion-android-list" icon-off="ion-android-list">
+        <ion-scroll direction="y">
+          <ion-list>
+            <ion-item ng-repeat="marker in markers">
+              Hello, {{marker.id}}!
+            </ion-item>
+        </ion-scroll>
+        </ion-list>
+      </ion-tab>
+    </ion-tabs>
+  </ion-content>
 </ion-view>
+
+
