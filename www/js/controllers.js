@@ -16,6 +16,8 @@ angular
 .controller('mainCtrl', function ($scope) {
     navigator.geolocation.getCurrentPosition(function (position) {
 
+        //----------------------- Search Map -----------------------//
+        //Searching place
         var geocoder = new google.maps.Geocoder();
 
         $scope.locationChanged = function (location) {
@@ -29,10 +31,10 @@ angular
 
                 }
             });
-
-
         };
 
+        //----------------------- Map -----------------------//
+        //Display a map
         $scope.map = {
             center: {
                 latitude: position.coords.latitude,
@@ -40,28 +42,54 @@ angular
             },
             zoom: 13
         };
-      $scope.markers = [];
 
+        //----------------------- Markers -----------------------//
+        //Create Model of markers
+        $scope.randomMarkers = [];
+
+        //Add marker option 
         $scope.markersOptions = {
-        icon: '../img/freefi-point-blue.png'
+            icon: '../img/freefi-point-blue.png'
         };
 
-      //Fill markers with fake data
-      for(var i = 0; i < 20; i++) {
-        $scope.markers.push({
-          id: i,
-                coords: {
-            latitude: (Math.random() * (120 - (-120)) + 0.0200).toFixed(4),
-            longitude: (Math.random() * (180 - (-180)) + 0.0200).toFixed(4)
-                }
-        })
-      }
+        //Create random markers
+        var createRandomMarker = function (i, idKey) {
+
+            if (idKey == null) {
+                idKey = "id";
+            }
+
+            var latitude = (Math.random() * (120 - (-120)) + 0.0200).toFixed(4);
+            var longitude = (Math.random() * (180 - (-180)) + 0.0200).toFixed(4);
+            var ret = {
+                latitude: latitude,
+                longitude: longitude,
+                title: 'm' + i,
+                show: false
+            };
+            ret[idKey] = i;
+            return ret;
+        }
+
+        //Fill markers with fake data
+        var markers = [];
+        for (var i = 0; i < 20; i++) {
+            markers.push(createRandomMarker(i));
+        }
+        $scope.randomMarkers = markers;
+
+        //Add Click event to marker 
+        $scope.onClick = function (marker, eventName, model) {
+            console.log("Clicked!");
+            model.show = !model.show;
+        };
     });
 
 })
 
 .controller('addWifiLocationCtrl', function ($scope) {
 
+    //----------------------- Search Location -----------------------//
     $scope.wifiPoint = {};
 
     navigator.geolocation.getCurrentPosition(function (position) {
@@ -86,7 +114,7 @@ angular
                 }
             });
         };
-
+        //----------------------- Map -----------------------//
         $scope.map = {
             center: {
                 latitude: position.coords.latitude,
@@ -103,18 +131,19 @@ angular
             zoom: 18
         };
 
+        //----------------------- Markers -----------------------//
         $scope.marker = {
             id: 0,
             coords: {
                 latitude: position.coords.latitude,
                 longitude: position.coords.longitude
             },
-        options: {
-          draggable: true,
-          icon: '../img/freefi-point-mango.png'
-        },
+            options: {
+                draggable: true,
+                icon: '../img/freefi-point-mango.png'
+            },
             events: {
-          dragend: function (marker) {
+                dragend: function (marker) {
                     $scope.wifiPoint.lat = marker.getPosition().lat();
                     $scope.wifiPoint.lon = marker.getPosition().lng();
 
