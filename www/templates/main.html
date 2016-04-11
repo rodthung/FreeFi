@@ -3,35 +3,32 @@
         <ion-tabs class="tabs-positive tabs-icon-top">
             <!-- tab for display wifi as a location on map -->
             <ion-tab title="Map" icon-on="ion-map" icon-off="ion-map">
-               <!-- search a map -->
+                <!-- search a map -->
                 <div>
-                    <ion-google-place placeholder="Your address" 
-                                      ng-model="data.address" 
-                                      required name="address" 
-                                      location-changed="locationChanged" />
+                    <ion-google-place placeholder="Your address" ng-model="data.address" required name="address" location-changed="locationChanged" />
                 </div>
                 <!-- map -->
-                <ui-gmap-google-map center='map.center' 
-                                    zoom='map.zoom'>
+                <ui-gmap-google-map center='map.center' zoom='map.zoom'>
                     <!-- markers -->
-                    <ui-gmap-markers models="randomMarkers" 
-                                    coords="'self'" 
-                                    options="markersOptions" 
-                                    click="onClick">
-                       <!-- window for markers -->
+                    <ui-gmap-markers models="Markers" coords="'self'" options="markersOptions" click="onClick">
+                        <!-- window for markers -->
                         <ui-gmap-windows show="show">
-                            <div ng-non-bindable>{{title}}</div>
+                            <div ng-non-bindable>
+                                <h4><a ui-sref="wifiInfo">{{name}}</a></h4>
+                                <p><b>Wifi name: </b>{{wifiName}}</p>
+                                <p><b>Wifi password: </b>{{wifiPass}}</p>
+                            </div>
                         </ui-gmap-windows>
                     </ui-gmap-markers>
                 </ui-gmap-google-map>
                 <!-- add wifi location -->
-                <img src="../img/add-button.png" ui-sref="addWifiLocation" id="main-button6" class="roundButtonMap" />
+                <img src="img/add-button.png" ui-sref="addWifiLocation" id="main-button6" class="roundButtonMap" />
             </ion-tab>
             <!-- tab for display wifi as a list of location -->
             <ion-tab title="List" icon-on="ion-android-list" icon-off="ion-android-list">
                 <ion-scroll direction="y">
                     <ion-list>
-                        <ion-item ng-repeat="marker in randomMarkers">
+                        <ion-item ng-repeat="marker in Markers">
                             Hello, {{marker.title}}!
                         </ion-item>
                     </ion-list>

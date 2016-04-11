@@ -1,5 +1,54 @@
-.angular-google-map-container { 
-  height: 400px; 
-    
+.angular-google-map-container {
+  height: 79vh;
+  margin-top: 10px;
+  z-index: 1;
 }
 
+.addMap .angular-google-map-container {
+  height: 40vh;
+}
+
+.divDown {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translate(-50%, 0%);
+  width: 93%;
+}
+
+.divDown a {
+  width: 49%;
+}
+
+.roundButtonMap {
+  border-radius: 50%;
+  position: fixed;
+  bottom: 65px;
+  left: 10px;
+  z-index: 100;
+  width: 60px;
+}
+
+.helpButton {
+  border-radius: 50%;
+  background: transparent;
+  float: right;
+  color: white;
+  border: none;
+}
+
+#home {
+  background-image: url('../img/homeBg.jpg');
+  text-align: center;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-color: black;
+}
+
+#home h1 {
+  color: white;
+}
+
+.scroll {
+  padding: 0 !important;
+}

@@ -37,10 +37,11 @@ angular.module('app.routes', [])
         controller: 'addWifiLocationCtrl'
       })
 
-      .state('tutorial', {
-        url: '/tutorial',
-        templateUrl: 'templates/tutorial.html',
-        controller: 'tutorialCtrl'
+      .state('wifiInfo', {
+        url: '/info',
+        templateUrl: 'templates/wifiInfo.html',
+        controller: 'wifiInfoCtrl',
+        
       })
 
     $urlRouterProvider.otherwise('/index')

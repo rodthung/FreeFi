@@ -13,7 +13,11 @@ angular
 
 })
 
-.controller('mainCtrl', function ($scope) {
+.controller('mainCtrl', function ($scope, wifiFactory) {
+
+
+
+
     navigator.geolocation.getCurrentPosition(function (position) {
 
         //----------------------- Search Map -----------------------//
@@ -26,6 +30,7 @@ angular
             }, function (results, status) {
 
                 if (status == google.maps.GeocoderStatus.OK) {
+                    console.log(results[0]);
                     $scope.map.center.latitude = results[0].geometry.location.lat();
                     $scope.map.center.longitude = results[0].geometry.location.lng();
 
@@ -45,49 +50,52 @@ angular
 
         //----------------------- Markers -----------------------//
         //Create Model of markers
-        $scope.randomMarkers = [];
 
-        //Add marker option 
+        $scope.Markers = [
+                {
+                    "id": "570bc8d7275ed11100eb0e7b",
+                    "unlikes": 0,
+                    "likes": 0,
+                    "wifiPass": "Jonisthebest",
+                    "wifiName": "Newwifi",
+                    "longitude": -3.0109835,
+                    "latitude": 43.356388,
+                    "name": "Newone",
+                    "__v": 0
+  },
+                {
+                    "id": "570bc8f0275ed11100eb0e7c",
+                    "unlikes": 0,
+                    "likes": 0,
+                    "wifiPass": "Jonisthebest",
+                    "wifiName": "Newwifi",
+                    "longitude": -3.0094117255173387,
+                    "latitude": 43.35659862418748,
+                    "name": "Another",
+                    "__v": 0
+  }
+]
+            //Add marker option 
         $scope.markersOptions = {
-            icon: '../img/freefi-point-blue.png'
+            icon: 'img/freefi-point-blue.png'
         };
+        //----------------------- Call API -----------------------//
+        wifiFactory.getAllSpots()
+            .then(function (result) {
+                $scope.Markers = result.data;
+                for (var i = 0; i < $scope.Markers.length; i++) {
+                    $scope.Markers[i].id = i
+                }
 
-        //Create random markers
-        var createRandomMarker = function (i, idKey) {
+            })
 
-            if (idKey == null) {
-                idKey = "id";
-            }
 
-            var latitude = (Math.random() * (120 - (-120)) + 0.0200).toFixed(4);
-            var longitude = (Math.random() * (180 - (-180)) + 0.0200).toFixed(4);
-            var ret = {
-                latitude: latitude,
-                longitude: longitude,
-                title: 'm' + i,
-                show: false
-            };
-            ret[idKey] = i;
-            return ret;
-        }
 
-        //Fill markers with fake data
-        var markers = [];
-        for (var i = 0; i < 20; i++) {
-            markers.push(createRandomMarker(i));
-        }
-        $scope.randomMarkers = markers;
-
-        //Add Click event to marker 
-        $scope.onClick = function (marker, eventName, model) {
-            console.log("Clicked!");
-            model.show = !model.show;
-        };
     });
 
 })
 
-.controller('addWifiLocationCtrl', function ($scope) {
+.controller('addWifiLocationCtrl', function ($scope, wifiFactory) {
 
     //----------------------- Search Location -----------------------//
     $scope.wifiPoint = {};
@@ -95,6 +103,8 @@ angular
     navigator.geolocation.getCurrentPosition(function (position) {
 
         var geocoder = new google.maps.Geocoder();
+        $scope.wifiPoint.lat = position.coords.latitude;
+        $scope.wifiPoint.lon = position.coords.longitude;
 
         $scope.addLocationChanged = function (location) {
             geocoder.geocode({
@@ -140,7 +150,7 @@ angular
             },
             options: {
                 draggable: true,
-                icon: '../img/freefi-point-mango.png'
+                icon: 'img/freefi-point-mango.png'
             },
             events: {
                 dragend: function (marker) {
@@ -157,9 +167,15 @@ angular
 
     $scope.saveWifiPoint = function () {
         console.log($scope.wifiPoint);
+
+        wifiFactory.addSpot($scope.wifiPoint)
+            .then(function (result) {
+                console.log(result.data);
+            })
     }
 })
 
-.controller('tutorialCtrl', function ($scope) {
-
+.controller('wifiInfoCtrl', function ($scope) {
+    console.log('in wifiInfo');
 })
+
