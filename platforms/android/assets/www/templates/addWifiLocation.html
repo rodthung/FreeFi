@@ -5,25 +5,26 @@
         <div>
             <ion-google-place placeholder="Your address" ng-model="data.wifiAddress" required name="address" location-changed="addLocationChanged" />
         </div>
-        <p>Drag and drop the marker in the wifi position</p>
+        <p class="DragHeader"><b>Drag and drop the marker in the wifi position</b></p>
         <form class="list">
-            <ui-gmap-google-map center='map.center' zoom='map.zoom' class="addMap" events="map.events">
-                <ui-gmap-marker coords="marker.coords" options="marker.options" events="marker.events" idkey="marker.id">
-                </ui-gmap-marker>
-            </ui-gmap-google-map>
+            <div id="addMap" data-tap-disabled="true"></div>
+
         </form>
         <h1>Wifi</h1>
 
-        <form class="list">
-            <label class="item item-input">
+        <form name="authorizationForm" novalidate="" ng-submit="signIn(authorizationForm)">
+            <div class="list">
+
                 <input type="text" ng-model="wifiPoint.locationName" placeholder="Location Name">
-            </label>
-            <label class="item item-input">
+                <div class="showError" ng-show="showLocationNameError"><span class="glyphicon glyphicon-remove"></span>Location name is required!</div>
+
                 <input type="text" ng-model="wifiPoint.wifiName" placeholder="WiFi Name">
-            </label>
-            <label class="item item-input">
-                <input type="text" ng-model="wifiPoint.pass" placeholder="WiFi Password">
-            </label>
+                <div class="showError" ng-show="showWifiNameError"><span class="glyphicon glyphicon-remove"></span>Wifi name is required!</div>
+
+                <input type="text" ng-model="wifiPoint.pass" placeholder="WiFi Password" required>
+                <div class="showError" ng-show="showWifiPassError"><span class="glyphicon glyphicon-remove"></span>Wifi name is required!</div>
+
+            </div>
         </form>
         <a id="addWifiLocation-button9" class="button button-positive  button-block" ng-click="saveWifiPoint()">Submit</a>
     </ion-content>

@@ -1,35 +1,46 @@
 <ion-view title="main">
     <ion-content overflow-scroll="true" scroll="true" padding="true" class="has-header">
+       
         <ion-tabs class="tabs-positive tabs-icon-top">
+           
             <!-- tab for display wifi as a location on map -->
-            <ion-tab title="Map" icon-on="ion-map" icon-off="ion-map">
+            <ion-tab title="Map" icon-on="ion-map" icon-off="ion-map" on-select="selectTab()">
+               
                 <!-- search a map -->
                 <div>
                     <ion-google-place placeholder="Your address" ng-model="data.address" required name="address" location-changed="locationChanged" />
                 </div>
+                
                 <!-- map -->
-                <ui-gmap-google-map center='map.center' zoom='map.zoom'>
-                    <!-- markers -->
-                    <ui-gmap-markers models="Markers" coords="'self'" options="markersOptions" click="onClick">
-                        <!-- window for markers -->
-                        <ui-gmap-windows show="show">
-                            <div ng-non-bindable>
-                                <h4><a ui-sref="wifiInfo">{{name}}</a></h4>
-                                <p><b>Wifi name: </b>{{wifiName}}</p>
-                                <p><b>Wifi password: </b>{{wifiPass}}</p>
-                            </div>
-                        </ui-gmap-windows>
-                    </ui-gmap-markers>
-                </ui-gmap-google-map>
+                <div id="map" data-tap-disabled="true"></div>
+
                 <!-- add wifi location -->
                 <img src="img/add-button.png" ui-sref="addWifiLocation" id="main-button6" class="roundButtonMap" />
+                <button type="button" class="btn btn-primary reload" ng-click="selectTab()">Reload Map</button>
             </ion-tab>
+            
             <!-- tab for display wifi as a list of location -->
             <ion-tab title="List" icon-on="ion-android-list" icon-off="ion-android-list">
                 <ion-scroll direction="y">
                     <ion-list>
                         <ion-item ng-repeat="marker in Markers">
-                            Hello, {{marker.title}}!
+                            <div class='col-xs-6 info'>
+                                <div><b>Location </b>: {{marker.name}}</div>
+                                <div><b>Wifi Name </b>: {{marker.wifiName}}</div>
+                                <div><b>Wifi Password </b>: {{marker.wifiPass}}</div>
+                            </div>
+                            <div class='col-xs-6'>
+                                <div class='col-xs-12 like'>
+                                    <img class="like" src="img/like.png" />&nbsp;&nbsp;
+                                    <b>{{marker.likes}}</b>
+                                    <button type="button" class="btn btn-success btn-sm likeButton" ng-click="btnlike(marker)">Like</button>
+                                </div>
+                                <div class='col-xs-12 unlike'>
+                                    <img class="unlike" src="img/dislike.png" />&nbsp;&nbsp;
+                                    <b>{{marker.unlikes}}</b>
+                                    <button type="button" id="btn-unlike" class="btn btn-danger btn-sm unlikeButton" ng-click="btnunlike(marker)">Unlike</button>
+                                </div>
+                            </div>
                         </ion-item>
                     </ion-list>
                 </ion-scroll>
